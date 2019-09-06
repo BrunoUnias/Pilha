@@ -52,17 +52,23 @@ void exibirPilha(Pilha *monte){
 	int i;
 	Pilha *curso = monte->inicio;
 	for(i = 0; i<curso->tamanho;i++){
-		printf("\t\t%s\n",corrente->dado);
+		printf("%d\n",corrente->dado);
 		curso = corrente->seguinte;
 		
 	}
+	
 }
 
 int main() {
-	int opc,a;
 	Pilha *i;
+	int a,b;
+	for(b = 0; b<= 10; b++){
+	printf("Informe os valores:");
+	scanf("%d",&a);
+	empilhar(i,a);
+	}
 	
-	printf("Escolha a opcao.");
+	/*printf("Escolha a opcao.");
 	printf("1-empilhar\n2-desempilhar\n3-exibir\n4-sair");
 	scanf("%d",&opc);
 	switch(opc){
@@ -75,6 +81,6 @@ int main() {
 		case 3:
 			exibirPilha(i);
 			break;
-	}
+	}*/
 	return 0;
 }
