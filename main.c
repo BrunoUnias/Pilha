@@ -1,35 +1,36 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
-typedef struct ElementoPilha{
-	int *dado;
-	struct Pilha *seguinte;
+typedef struct ElementoLista{
+	char *dado;
+	struct ElementoLista *seguinte;
 	
 }Elemento;
 
-typedef struct Lista{
+typedef struct ListaDetectada{
 	Elemento *inicio;
 	int tamanho;
 	
 }Pilha;
 
-void inicializar(Pilha *monte){
+void inicializacao(Pilha *monte){
 	monte->inicio = NULL;
 	monte->tamanho = 0;
 	
 }
 
-int empilhar(Pilha *monte,int *inicio){
-	Elemento *novo;
-	if((novo = (Elemento *) malloc(sizeof(Elemento))) == NULL)
+int empilhar(Pilha *monte, char *dado){
+	Elemento *novo_elemento;
+	if((novo_elemento = (Elemento *)malloc(sizeof(Elemento))) == NULL)
 	return -1;
-	if((novo->dado = (int *) malloc(50 *sizeof(int))) == NULL)
+	if((novo_elemento->dado = (char *) malloc(50 *sizeof(char))) == NULL)
 	return -1;
 	
-	monte->inicio = novo;
-	novo->seguinte = monte->inicio;
-	monte->inicio = novo;
+	strcpy(novo_elemento->dado,dado);
+	novo_elemento->seguinte = monte->inicio;
+	monte->inicio = novo_elemento;
 	monte->tamanho++;
 	
 }
@@ -40,7 +41,7 @@ int desempilhar(Pilha *monte){
 	return -1;
 	remove_elemento = monte->inicio;
 	monte->inicio = monte->inicio->seguinte;
-	//free(remove_elemento->dado);
+	free(remove_elemento->dado);
 	free(remove_elemento);
 	monte->tamanho--;
 	return 0;
@@ -51,36 +52,17 @@ void exibirPilha(Pilha *monte){
 	Elemento *corrente;
 	int i;
 	Pilha *curso = monte->inicio;
-	for(i = 0; i<curso->tamanho;i++){
-		printf("%d\n",corrente->dado);
-		curso = corrente->seguinte;
-		
-	}
-	
+	for(i=0;i<monte->tamanho;++i){
+	printf("\t\t%s\n", corrente->dado);
+ 	curso = corrente->seguinte;
+ 	
 }
 
-int main() {
-	Pilha *i;
-	int a,b;
-	for(b = 0; b<= 10; b++){
-	printf("Informe os valores:");
-	scanf("%d",&a);
-	empilhar(i,a);
-	}
-	
-	/*printf("Escolha a opcao.");
-	printf("1-empilhar\n2-desempilhar\n3-exibir\n4-sair");
-	scanf("%d",&opc);
-	switch(opc){
-		case 1:
-			empilhar(i,a);
-			break;
-		case 2:
-			desempilhar(i);
-			break;
-		case 3:
-			exibirPilha(i);
-			break;
-	}*/
-	return 0;
 }
+
+int main(){
+	
+    
+    return 0;
+}
+
